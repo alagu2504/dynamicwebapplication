@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<%@ page import="users.Operations,bankingapplicationPojos.Customer"%>
+
+<html>
+<style>
+
+body {
+	background-color: rgba(245, 245, 245, 1);
+	height: 100vh;
+	width: 100%;
+	overflow: hidden;
+}
+h2 {
+    opacity: 0.5;
+	text-align: center;
+	font-size: 2em;
+	margin-top: 30px;
+	margin-bottom: 5px;
+}
+
+.container {
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 45%;
+  left: 50%;
+  width:40%;
+  height:80%;
+  border-radius: 30px;
+    box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+  background: linear-gradient(to bottom, rgba(102, 153, 255, .3), rgba(102, 255, 255, .3));
+		}
+
+.submitButton{
+      color:#FFFFFF;
+      font-weight:bold;
+	  background-color:rgb(0,0,255,1);
+	  height:30px;
+	  border-radius: 8px;
+	  width:150px;
+	  box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+}
+
+.submitHover:hover{
+	  background-color:rgb(0,0,255,.8);
+}
+
+.textFeild{
+          border-top:0px;
+          border-left: 0px;
+          border-right: 0px;
+		  border-radius: 8px;
+	      height:30px;
+	      text-align:center;
+	      box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+	      width:60%;
+	      font-size:1em;
+}
+
+
+.center{
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+td{
+height:50%;
+}
+
+table{
+  border-collapse:separate;
+  border-spacing: 30px;
+  width:100%;
+}
+
+</style>
+<head>
+<meta charset="UTF-8">
+<title>Customer Details</title>
+</head>
+<body>
+
+	<div class="container">
+	 <p>${error }</p>
+		<h2>Peronal Info</h2>
+	<form action="bankingservlet" method="post" target="mainframe">
+		<table class="center">
+			<tr>
+				<td style="text-align:left;padding-top:20px;padding-left:80px;"> <label style="padding-right:50px;font-size:20px;">Name</label></td>
+				<td><input class="textFeild" type="text" id="userName" name="userName"
+					value="${customer.getUserName() }" required></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:left;padding-top:20px;padding-left:80px;"> <label style="padding-right:50px;font-size:20px;">Date of Birth </label></td>
+				<td><input class="textFeild" type="text" id="dateOfBirth" name="dateOfBirth"
+					value="${customer.getDataOfBirth() }" readonly required></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:left;padding-top:20px;padding-left:80px;"><label style="padding-right:50px;font-size:20px;">Mobile Number </label></td>
+				<td><input class="textFeild" type="number" id="mobileNumber" name="mobileNumber"
+					value="${customer.getMobileNumber() }" required></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:left;padding-top:20px;padding-left:80px;"><label style="padding-right:50px;font-size:20px;">Address </label></td>
+				<td><input class="textFeild"  type="text" id="address" name="address"
+					value="${customer.getAddress() }" required></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:left;padding-top:20px;padding-left:80px;"><label style="padding-right:50px;font-size:20px;">Email Id </label></td>
+				<td><input class="textFeild" type="text" id="emailId" name="emailId"
+					value="${customer.getEmailId() }" required></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:left;padding-top:20px;padding-left:80px;"><label style="padding-right:50px;font-size:20px;">Aadhaar Number</label></td>
+				<td><input class="textFeild" type="text" id="aadhaarNumber" name="aadhaarNumber"
+					value="${customer.getAadhaarNumber() }" readonly></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:left;padding-top:20px;padding-left:80px;"><label style="padding-right:50px;font-size:20px;">Pan Number </label></td>
+				<td><input class="textFeild" type="text" id="panCardNumber" name="panCardNumber"
+					value="${customer.getPanNumber() }" readonly></td>
+			</tr>
+
+
+			<tr>
+				<td></td>
+				<td style="padding-left:1px;"><input class="submitButton submitHover" type="submit" name="action" value="SaveInfo"
+					style="border: 3px solid #555;"></td>
+			</tr>
+		</table>
+		<input type="hidden" name="customerId"
+			value="${customer.getCustomerId()}" /> <input type="hidden"
+			name="password" value="${customer.getPassword()}" /> <input
+			type="hidden" name="role" value="${customer.getRole()}" /> <input
+			type="hidden" name="status" value="${customer.getStatus() }" />
+	</form>
+	</div>
+	
+</body>
+</html>
