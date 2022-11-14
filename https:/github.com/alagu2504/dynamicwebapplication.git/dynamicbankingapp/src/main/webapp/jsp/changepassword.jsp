@@ -66,7 +66,12 @@ table{
   border-collapse:separate;
   border-spacing: 30px;
 }
-
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -77,12 +82,12 @@ table{
 <h2  style="margin-top:30px;">Change Password</h2>
 
  <form action="bankingservlet" method="post" target="mainframe">
- <h4>${error}</h4>
+		<p class="error">${error }</p>
  
   <table class="center">
 
   <tr >
-        <td  style="padding-right:20px;padding-top:20px;font-size:20px;"><label>New Password</label></td>
+        <td  style="padding-right:20px;padding-top:5px;font-size:20px;"><label>New Password</label></td>
         <td > <input  class= "textFeild" style="height:30px;margin-left:2px;" type="password" id="newpassword" name="newpassword" placeholder="Newpassword" required></td>
   </tr>
 

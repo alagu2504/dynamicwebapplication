@@ -48,13 +48,9 @@ public class bankingservlet extends HttpServlet {
 		String scope=request.getParameter("action");
 		Operations userObject=new Operations();
 
-		//		String url = request.getServletPath();
-		//		System.out.println(url);
-		//		System.out.println("OUTSIDE SWITCH :"+scope);
 		switch(scope) {
 		case "Login":{
 			String error="";
-
 			try {
 				int userId=Integer.parseInt(request.getParameter("userId"));
 				String password=request.getParameter("password");
@@ -84,25 +80,24 @@ public class bankingservlet extends HttpServlet {
 						}
 						RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/customer.jsp");
 						dispatcher.forward(request, response);
+						break;
 					}
 					else if(role.equalsIgnoreCase("Admin")) {
 						RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/adminmain.jsp");
 						dispatcher.forward(request, response);
+						break;
 					}
 				}
 				else {
 					request.setAttribute("error", error);
 					RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
 					dispatcher.forward(request, response);
+					break;
 				}
 			} 
 			catch (ClassNotFoundException e) {
-				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
-				dispatcher.forward(request, response);
 				e.printStackTrace();
 			} catch (SQLException e) {
-				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
-				dispatcher.forward(request, response);
 				e.printStackTrace();
 			}
 			catch (NumberFormatException e) {
@@ -110,14 +105,15 @@ public class bankingservlet extends HttpServlet {
 				request.setAttribute("error", error);
 				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
 				dispatcher.forward(request, response);
+				break;
 			}
 			catch (CustomException e) {
 				error="Invalid Credentials !";
 				request.setAttribute("error", error);
 				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
 				dispatcher.forward(request, response);
+				break;
 			}
-			break;
 		}//end of login
 
 		case "Home":{
@@ -130,43 +126,7 @@ public class bankingservlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 		}
-//		case "Send Request":{
-//			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/customerstatusrequest.jsp");
-//			dispatcher.forward(request, response);
-//			break;
-//		}
 
-		case "Change Customer Status":{
-
-			int userId=Integer.parseInt(request.getParameter("userId"));
-			String password=request.getParameter("password");
-			String error="";
-			boolean isAvailable=false;
-			try {
-				isAvailable=userObject.loginMethod(userId, password);
-				if(isAvailable) {
-					HttpSession session=request.getSession(true);  
-					session.setAttribute("userId",userId);
-					User user=userObject.getUserDetails(userId);
-					String role=user.getRole().trim();
-					Customer customer=userObject.getCustomerDetails(userId);
-					if(role.equalsIgnoreCase("Customer")&&customer.getStatus().equalsIgnoreCase("InActive")) {
-						userObject.customerStatusRequest(userId, request.getParameter("description"));
-					}	 
-				}
-			}
-			catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (CustomException e) {
-				error=e.getMessage();
-			}
-			request.setAttribute("error", error);
-			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
-			dispatcher.forward(request, response);
-			break;
-		}
 		case "Deposit":{
 			HttpSession session=request.getSession(false);  
 			Admin admin=new Admin();
@@ -318,12 +278,12 @@ public class bankingservlet extends HttpServlet {
 			} catch (CustomException e) {
 				error=e.getMessage();
 				request.setAttribute("error",error);
-                request.setAttribute("inActiveAccounts", inActiveAccount);
+				request.setAttribute("inActiveAccounts", inActiveAccount);
 				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/activeaccount.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
-            request.setAttribute("inActiveAccounts", inActiveAccount);
+			request.setAttribute("inActiveAccounts", inActiveAccount);
 			request.setAttribute("error",error);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/activeaccount.jsp");
 			dispatcher.forward(request, response);
@@ -331,25 +291,25 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "Active Account Request":{
-			String error="Request Send Successfully";
+			String error="Request Submitted Successfully";
 			HttpSession session=request.getSession(false);  
 			Admin admin=new Admin();
 			Map<Long,Account> inActiveAccount=new HashMap<>();
 			try {
-			admin.accountStatusRequest(Long.parseLong(request.getParameter("accountnumber")), request.getParameter("describtion"));
-			inActiveAccount= admin.getInactiveAccount((int)session.getAttribute("userId"));
+				admin.accountStatusRequest(Long.parseLong(request.getParameter("accountnumber")), request.getParameter("describtion"));
+				inActiveAccount= admin.getInactiveAccount((int)session.getAttribute("userId"));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} catch (CustomException e) {
 				error=e.getMessage();
 				request.setAttribute("error",error);
-	            request.setAttribute("inActiveAccounts", inActiveAccount);
+				request.setAttribute("inActiveAccounts", inActiveAccount);
 				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/activeaccount.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
 			request.setAttribute("error",error);
-            request.setAttribute("inActiveAccounts", inActiveAccount);
+			request.setAttribute("inActiveAccounts", inActiveAccount);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/activeaccount.jsp");
 			dispatcher.forward(request, response);
 			break;
@@ -386,32 +346,52 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "STATEMENTS":{
-			Operations user=new Operations();
+			HttpSession session=request.getSession(false);  
+			Operations user=new Operations(); 
+			String role=session.getAttribute("role").toString().trim();
 			Map<Integer,Statements> statements=new TreeMap<>();
+			if(request.getParameter("accountNumber").trim().equalsIgnoreCase("")) {
+				Admin admin=new Admin();
+				Map<Long,Map<Integer,Statements>> allStatements=admin.getAllStatements();
+				Iterator<Long> iteratorObject=allStatements.keySet().iterator();
+				while(iteratorObject.hasNext()){
+					Map<Integer,Statements> mapOfStatements=allStatements.get(iteratorObject.next());
+					statements.putAll(mapOfStatements);
+				}
+				request.setAttribute("statement", statements);
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/alltransactiondetails.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
 			if(request.getParameter("days").trim()=="") {
-			 statements=user.getTransactionStatements(Long.parseLong(request.getParameter("accountNumber")),0);
-			 request.setAttribute("statement", statements);
-			 RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/statement.jsp");
-			 dispatcher.forward(request, response);
-			 break;
+				statements=user.getTransactionStatements(Long.parseLong(request.getParameter("accountNumber")),0);
+				request.setAttribute("statement", statements);
+				if(role.equalsIgnoreCase("Customer")) {
+					RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/statement.jsp");
+					dispatcher.forward(request, response);
+					break;
+				}
+				else {
+					RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/alltransactiondetails.jsp");
+					dispatcher.forward(request, response);
+					break;
+				}
 			}
 			statements=user.getTransactionStatements(Long.parseLong(request.getParameter("accountNumber")),Integer.parseInt(request.getParameter("days")));
 			request.setAttribute("statement", statements);
-			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/statement.jsp");
-			dispatcher.forward(request, response);
-			break;
+			if(role.equalsIgnoreCase("Customer")) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/statement.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			else {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/alltransactiondetails.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+
 		}
 
-//		case "SPECIFIC STAEMENT":{
-//			System.out.println("state");
-//			Operations user=new Operations();
-//			Map<Integer,Statements> statements=user.getTransactionStatements(Long.parseLong(request.getParameter("accountNumber")));
-//
-//			request.setAttribute("statement", statements);
-//			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/specifictransactiondetails.jsp");
-//			dispatcher.forward(request, response);
-//			break;
-//		}
 
 		case "View Transaction Details":{
 			Admin admin=new Admin();
@@ -423,8 +403,27 @@ public class bankingservlet extends HttpServlet {
 				secondMap.putAll(mapOfStatements);
 			}
 			Map<Integer,Statements> treeMap=new TreeMap<Integer,Statements>(secondMap);
-			request.setAttribute("allStatements", treeMap);
+			request.setAttribute("statement", treeMap);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/alltransactiondetails.jsp");
+			dispatcher.forward(request, response);
+			break;
+		}
+		case "Change Customer Status":{
+			HttpSession session=request.getSession(true);  
+			int userId=(int)session.getAttribute("userId");
+			String error="Request Submitted Successfully";
+			try {
+				userObject.customerStatusRequest(userId, request.getParameter("description")); 
+			}
+			catch (CustomException e) {
+				error=e.getMessage();
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/customerstatusrequest.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			request.setAttribute("error", error);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/customerstatusrequest.jsp");
 			dispatcher.forward(request, response);
 			break;
 		}
@@ -453,19 +452,21 @@ public class bankingservlet extends HttpServlet {
 			String error="";
 			Admin admin=new Admin();
 			admin.updateCustomerStatus(Integer.parseInt(request.getParameter("customerId1")), Boolean.parseBoolean(request.getParameter("response")));
+			Map<Integer, CustomerStatusRequest> customerStatusRequest=new TreeMap<>();
 			try {
-				Map<Integer, CustomerStatusRequest> customerStatusRequest = admin.getAllCustomerStatusRequest();
-				request.setAttribute("customerStatusRequest", customerStatusRequest);
-				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/allcustomerstatusrequest.jsp");
-				dispatcher.forward(request, response);
-				break;
+				customerStatusRequest = admin.getAllCustomerStatusRequest();
 			} catch (CustomException e) {
 				error=e.getMessage();
 				request.setAttribute("error", error);
+				request.setAttribute("statusRequest", customerStatusRequest);
 				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/allcustomerstatusrequest.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
+			request.setAttribute("statusRequest", customerStatusRequest);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/allcustomerstatusrequest.jsp");
+			dispatcher.forward(request, response);
+			break;
 
 		}
 
@@ -530,8 +531,8 @@ public class bankingservlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 		}
-		
-		
+
+
 		case "Update Request":{
 			Admin admin=new Admin();
 			String error="";
@@ -558,7 +559,7 @@ public class bankingservlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 		}
-		
+
 
 		case "ADD NEW USER":{
 			String message="Successfully Inserted";
@@ -586,7 +587,7 @@ public class bankingservlet extends HttpServlet {
 			break;
 		}
 
-		
+
 
 		case "Add New Users":{
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/adduser.jsp");
@@ -636,49 +637,49 @@ public class bankingservlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 		}
-		
+
 		case "User Details":{
 			HttpSession session=request.getSession(false);  
-            User user=userObject.getUserDetails((int)session.getAttribute("userId"));
-            request.setAttribute("user", user);
-            RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/userinfo.jsp");
+			User user=userObject.getUserDetails((int)session.getAttribute("userId"));
+			request.setAttribute("user", user);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/userinfo.jsp");
 			dispatcher.forward(request, response);
 			break;
-			
+
 		}
 		case "Update UserInfo":{
 			String error="Updated Successfully";
 			HttpSession session=request.getSession(false);  
-            User user=new User();
-            user.setUserId(Integer.parseInt(request.getParameter("userId").trim()));	
-            user.setUserName(request.getParameter("userName").trim());
-            user.setDataOfBirth(request.getParameter("dateOfBirth").trim());
-            user.setMobileNumber(Long.parseLong(request.getParameter("mobileNumber").trim()));
-            user.setAddress(request.getParameter("address").trim());
-            user.setEmailId(request.getParameter("emailId").trim());
-            user.setRole(request.getParameter("role").trim());
-            user.setPassword(request.getParameter("password").trim());
-            try {
+			User user=new User();
+			user.setUserId(Integer.parseInt(request.getParameter("userId").trim()));	
+			user.setUserName(request.getParameter("userName").trim());
+			user.setDataOfBirth(request.getParameter("dateOfBirth").trim());
+			user.setMobileNumber(Long.parseLong(request.getParameter("mobileNumber").trim()));
+			user.setAddress(request.getParameter("address").trim());
+			user.setEmailId(request.getParameter("emailId").trim());
+			user.setRole(request.getParameter("role").trim());
+			user.setPassword(request.getParameter("password").trim());
+			try {
 				userObject.updateUserInfo(user);
 			} catch (CustomException e) {
 				error=e.getMessage();
 				request.setAttribute("error", error);
-				    User user1=userObject.getUserDetails((int)session.getAttribute("userId"));
-		            request.setAttribute("user", user1);
-		            RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/userinfo.jsp");
-					dispatcher.forward(request, response);
-					break;
+				User user1=userObject.getUserDetails((int)session.getAttribute("userId"));
+				request.setAttribute("user", user1);
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/userinfo.jsp");
+				dispatcher.forward(request, response);
+				break;
 			}
 			request.setAttribute("error", error);
-            request.setAttribute("user", user);
-            RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/userinfo.jsp");
+			request.setAttribute("user", user);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/userinfo.jsp");
 			dispatcher.forward(request, response);
 			break;
-            
+
 		}
 
 		case "SaveInfo":{
-            
+
 			String error="";
 			HttpSession session=request.getSession(false); 
 
@@ -717,7 +718,7 @@ public class bankingservlet extends HttpServlet {
 					dispatcher.forward(request, response);
 					break;
 				}
-				
+
 			}//end of catch
 			if(session.getAttribute("role").toString().equalsIgnoreCase("Customer")) {
 
@@ -759,21 +760,6 @@ public class bankingservlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			//			 if(role.equalsIgnoreCase("Customer")&&change==true) {
-			//					Admin adminObject=new Admin();
-			//					Map<Integer,Map<Long,Account>> accountDetails=adminObject.getAllAccountDetailsOfCustomer();
-			//					Map<Long,Account> accounts=accountDetails.get(session.getAttribute("userId"));
-			//		            request.setAttribute("accountDetails", accounts);
-			//					request.setAttribute("error", error);
-			//					RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/accountdetails.jsp");
-			//					dispatcher.forward(request, response);
-			//					break;
-			//				}
-			//				else if(role.equalsIgnoreCase("Admin")&&change==true) {
-			//					RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/withdrawrequest.jsp");
-			//					dispatcher.forward(request, response);
-			//					break;
-			//				}
 			request.setAttribute("error", error);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/changepassword.jsp");
 			dispatcher.forward(request, response);
@@ -847,11 +833,9 @@ public class bankingservlet extends HttpServlet {
 			break;	
 		}
 
-		case "CHANGE ACCOUNT STATUS":{
-			break;
-		}
-
 		case "Logout":{
+			HttpSession session=request.getSession(false);  
+			session.invalidate();
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
 			dispatcher.forward(request, response);
 			break;

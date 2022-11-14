@@ -70,7 +70,12 @@ table{
   border-collapse:separate;
   border-spacing: 30px;
 }
-
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -79,7 +84,7 @@ table{
 <body>
 	<div class="container">
 		<h2>Deposit</h2>
-		<h4>${error}</h4>
+		<p class="error">${error }</p>
 		<form action="bankingservlet" method="post">
 			<table class="center">
 				<tr>

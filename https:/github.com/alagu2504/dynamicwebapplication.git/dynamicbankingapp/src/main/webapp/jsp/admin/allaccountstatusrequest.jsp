@@ -21,7 +21,6 @@ table {
 td {
 	text-align: center;
 	border: 3px solid #FFFFFF;
-	height: 60px;
 	font-size: 20px;
 }
 
@@ -36,11 +35,11 @@ th {
 }
 
 tr:nth-child(even) {
-	background-color: white;
+	background-color: rgba(102, 153, 255, .1);
 }
 
 tr:nth-child(odd) {
-	background-color: rgba(102, 153, 255, .1);
+	background-color: white;
 }
 
 tr:hover {
@@ -79,6 +78,12 @@ border-color: rgba(255, 114, 111, .8);
 box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
 background-color: rgba(102, 153, 255, .5);
 }
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -87,7 +92,7 @@ background-color: rgba(102, 153, 255, .5);
 <body>
 	<h2>Account Status Request</h2>
 
-	<form action="bankingservlet" method="post" target="mainframe">
+			<p class="error">${error }</p>
 		<table>
 			<tr>
 				<th>Account Number</th>
@@ -97,6 +102,7 @@ background-color: rgba(102, 153, 255, .5);
 				<th>Submit</th>
 			</tr>
 			<c:forEach items="${accountActiveRequest }" var="request">
+				<form action="bankingservlet" method="post" target="mainframe">
 				<tr>
 					<td><input style="background: transparent;text-align:center;font-size:15px;border: 0;" type="number" name="accountNumber"
 						value="${request.getAccountNumber() }" readonly></td>
@@ -110,11 +116,11 @@ background-color: rgba(102, 153, 255, .5);
 					</select></td>
 					<td><input class="save" type="submit" name="submit" value="SUBMIT"></td>
 				</tr>
-			</c:forEach>
-		</table>
-		<p style="font-size: 3em; text-align: center">${error }</p>
-		<input type="hidden" name="action"
+				<input type="hidden" name="action"
 			value="Update Account Status Request">
 	</form>
+			</c:forEach>
+		</table>
+		
 </body>
 </html>

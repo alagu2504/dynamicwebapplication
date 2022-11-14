@@ -48,6 +48,11 @@ tr:hover {
 	background: linear-gradient(to bottom, #6699ff -3%, #66ffff 100%);
 }
 
+.save:hover{
+	background-color: green;
+
+}
+
 
 h2{           
               text-align:left;
@@ -65,7 +70,6 @@ background:transparent;
 }
 
 .save{
-width:5%;
 color:#FFFFFF;
 font-weight:bold;
 border-radius:5px;

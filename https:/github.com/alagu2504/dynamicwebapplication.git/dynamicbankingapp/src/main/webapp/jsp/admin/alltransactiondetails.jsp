@@ -92,8 +92,10 @@ background-color: rgba(102, 153, 255, .5);
 	<h2 >All Transaction Details</h2>
 	<form action="bankingservlet" method="post" target="mainframe">
 		<label style="font-size:1.5em">Account Number :</label> <input class= "accNo" type="number"
-			name="accountNumber" /> <input class= "save" type="submit" name="submit" /> <input
-			type="hidden" name="action" value="SPECIFIC STAEMENT" />
+			name="accountNumber" placeholder="Enter Account Number"/> 
+					<input class= "accNo" style="display:inline;" type="number" name="days" placeholder="Enter number Of Days"/> 
+			<input class= "save" type="submit" name="submit" /> <input
+			type="hidden" name="action" value="STATEMENTS" />
 	</form>
 	<table >
 		<tr >
@@ -106,7 +108,7 @@ background-color: rgba(102, 153, 255, .5);
 			<th>Transaction Time</th>
 			<th>Mode Of Transaction</th>
 		</tr>
-		<c:forEach items="${allStatements}" var="statements">
+		<c:forEach items="${statement}" var="statements">
 			<tr>
 				<td>${statements.value.getTransactionId()}</td>
 				<td>${statements.value.getCustomerId()}</td>

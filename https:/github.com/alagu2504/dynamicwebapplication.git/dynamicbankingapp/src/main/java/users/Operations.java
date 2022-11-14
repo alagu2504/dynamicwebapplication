@@ -42,7 +42,7 @@ public class Operations {
 		if(depositeAmount<100) {
 			throw new CustomException("Please Enter Valid Amount !");
 		}
-		else if(depositeAmount>100000) {
+		if(depositeAmount>100000) {
 			throw new CustomException("Maximum amount limit exceeded !");
 		}
 		Account accountPojoObject=getAccountDetails(accountNumber);
@@ -61,7 +61,7 @@ public class Operations {
 	}
 	
 	
-	public boolean withdrawMethod(long withdrawAmount,long accountNumber) throws CustomException {
+	public void withdrawMethod(long withdrawAmount,long accountNumber) throws CustomException {
 		if(withdrawAmount<100) {
 			throw new CustomException("Please Enter Valid Amount !");
 		}
@@ -78,7 +78,6 @@ public class Operations {
         requestPojoObject.setTransferAmount(withdrawAmount);
         requestPojoObject.setRequestStatus("Waiting");
         storageLayerObject.transactionRequest(requestPojoObject);
-        return true;
 	}//end of withdraw Method
 	
 	
@@ -239,6 +238,9 @@ public void executeTransaction(TransactionRequest requestPojoObject) throws Cust
 	
 	public void customerStatusRequest(int customerId,String description) throws CustomException {
 		CustomCheck.isNull(description);
+		if(description.trim().equalsIgnoreCase("")) {
+			throw new CustomException("Give Some Opinion!");
+		}
 		CustomerStatusRequest request=new CustomerStatusRequest();
 		request.setCustomerId(customerId);
 		request.setDescription(description);

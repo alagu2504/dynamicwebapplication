@@ -23,7 +23,7 @@ table {
 td {
 	text-align: center;
 	border: 3px solid #FFFFFF;
-	height: 60px;
+	height: 50px;
 	font-size: 20px;
 }
 
@@ -38,11 +38,11 @@ th {
 }
 
 tr:nth-child(odd) {
-	background-color: rgba(102, 153, 255, .1);
+	background-color: white;
 }
 
 tr:nth-child(even) {
-	background-color: white;
+	background-color: rgba(102, 153, 255, .1);
 }
 
 tr:hover {
@@ -86,6 +86,12 @@ text-align:center;
 font-size:15px;
 border: 0;
 }
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -93,6 +99,8 @@ border: 0;
 </head>
 <body>
 	<h2>Withdraw Request Table</h2>
+			<p class="error">${error }</p>
+	
 		<table>
 
 			<tr>

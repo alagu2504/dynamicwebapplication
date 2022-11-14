@@ -67,6 +67,12 @@ table{
   border-spacing: 40px;
   padding-left:20px;
 }
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 
 </style>
 <head>
@@ -77,6 +83,7 @@ table{
 
 	<div class="container">
 		<h2>Request To Active Account</h2>
+				<p class="error">${error }</p>
 		<form action="bankingservlet" method="post">
 
 			<table class="center">
@@ -108,7 +115,6 @@ table{
 				style="margin-top: 30px; margin-left: 50%;" type="submit"
 				name="submit" value="SUBMIT">
 		</form>
-		<h4>${error}</h4>
 	</div>
 
 </body>

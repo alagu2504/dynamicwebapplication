@@ -67,6 +67,12 @@ table{
 td{
 text-align:left;
 }
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -77,7 +83,7 @@ text-align:left;
 <h2  class= "subHeading" style="margin-bottom: -10px;" >Forget Password</h2>
 
  <form action="bankingservlet" method="post" target="mainframe">
- <h4>${error}</h4>
+		<p class="error">${error }</p>
  
  <table class="center">
  

@@ -71,6 +71,12 @@ table{
   text-align:left;
   padding-left:15%;
 }
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -81,7 +87,7 @@ table{
     <div class="container">
     <h2>ADD NEW customer</h2>
 	<form action="bankingservlet" method="post" target="mainframe">
-		<p>${error }</p>
+		<p class="error">${error }</p>
 		<table >
 			<tr>
 				<th>Name </th>

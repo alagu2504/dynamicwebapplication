@@ -14,6 +14,12 @@ h1{
 text-align: center;
 margin-top: 10%;
 color: #FFFFFF;
+font-size:3em;
+}
+h2{
+text-align: center;
+color: #FFFFFF;
+font-size:2.5em;
 }
 </style>
 <head>
@@ -22,6 +28,6 @@ color: #FFFFFF;
 </head>
 <body >
 <h1 >Welcome to Our StarLink</h1>
-<h1 >${userName}</h1>
+<h2 >${userName}</h2>
 </body>
 </html>

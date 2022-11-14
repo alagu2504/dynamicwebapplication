@@ -25,7 +25,7 @@ h2 {
   top: 40%;
   left: 50%;
   width:40%;
-  height:53%;
+  height:55%;
   border-radius: 30px;
     box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
   background: linear-gradient(to bottom, rgba(102, 153, 255, .3), rgba(102, 255, 255, .3));
@@ -71,6 +71,12 @@ table{
   border-collapse:separate;
   border-spacing: 30px;
 }
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -80,7 +86,7 @@ table{
 	<div class="container">
 		<h2>Transfer</h2>
 		<form action="bankingservlet" method="post">
-
+		<p class="error">${error }</p>
 			<table class="center">
 				<tr>
 					<td style="padding-top:20px;text-align:left;"><label style="padding-right:50px;font-size:20px;" for="accno">Sender Account Number</label></td>
@@ -114,7 +120,6 @@ table{
 			</table>
         <input class="submitButton submitHover" style="margin-left:60%;" type="submit" name="action" value="TRANSFER"/>
 		</form>
-		<h4>${error}</h4>
 	</div>
 </body>
 </html>

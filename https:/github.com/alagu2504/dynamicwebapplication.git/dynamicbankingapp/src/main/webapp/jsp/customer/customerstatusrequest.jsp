@@ -24,7 +24,7 @@ h2 {
   top: 50%;
   left: 50%;
   width:40%;
-  height:70%;
+  height:40%;
   border-radius: 30px;
   box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
   background: linear-gradient(to bottom, rgba(102, 153, 255, .3), rgba(102, 255, 255, .3));
@@ -70,6 +70,12 @@ table{
   border-collapse:separate;
   border-spacing: 30px;
 }
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -78,22 +84,11 @@ table{
 <body>
 	<div class="container">
 		<h2>Request to change customer status</h2>
-		<h4 style="text-align:center;">${error}</h4>
+		<p class="error">${error }</p>
 
 		<form action="bankingservlet" method="post">
 			<table class="center">
-				<tr>
-					<td style="text-align:left;"><p>Customer Id 
-						<p></td>
-					<td><input class="textFeild" type="number" id="userId" name="userId"
-						placeholder="Enter UserId" required></td>
-				</tr>
-				<tr>
-					<td style="text-align:left;"><p>Password
-						<p></td>
-					<td><input class="textFeild" type="password" id="password" name="password"
-						placeholder="Enter Password" required></td>
-				</tr>
+				
 				<tr>
 				<td style="text-align:left;"><label>Description </label>
 				</td>
@@ -101,9 +96,6 @@ table{
 				required></textarea></td>
 				</tr>
 			</table>
-	
-			
-
 			<input type="hidden" name="action" value="Change Customer Status">
 
 			<div>

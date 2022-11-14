@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <style>
-body{
-margin:0;
+body {
+background: linear-gradient(to bottom, rgba(102, 153, 255, .8), rgba(102, 255, 255, .8));
+  height: 100vh;
+  width: 100%;
+  overflow:hidden;
+  margin:0;
 }
 .dropdown {
 	display: inline-block;
@@ -39,15 +43,13 @@ margin:0;
 }
 </style>
 <head>
-<link rel="stylesheet" href="css/CustomDesign.css">
 <meta charset="UTF-8">
 <title>customer</title>
 </head>
 <body>
 	<div style="padding-top: 0px;">
 	
-	<header style="background: linear-gradient(to bottom, rgba(102, 153, 255, .8), rgba(102, 255, 255, .8));height:10vh;">
-		<img alt="logo" src="images/starlinklogo.png" style="height:50px;width:50px;display:inline-block;padding-top:10px;">	
+	<header style="background: linear-gradient(to bottom, rgba(102, 153, 255, .8), rgba(102, 255, 255, .8));height:8vh;">
 	
 			<div class="dropdown" >
 			<img alt="" src = "images/profile4.png"
@@ -72,16 +74,17 @@ margin:0;
 				</div>
 			</div>
 		</div>
-
+		
+		<img alt="logo" src="images/starlinklogo.png" style="height:50px;width:50px;float:left;padding-top:10px;padding-left:20px;">
 		<h1
-			style="text-align: left; font-size: 2em; color: #FFFFFF ;padding-left:0px;display:inline-block;">STARLINK
-			BANK</h1>
+			style="font-size: 2em; color: #FFFFFF;margin-top:0px;padding-top:19px;">
+			STARLINK BANK</h1>
 	</header>
 	<iframe src="jsp/customer/customermenu.jsp"
-		style="height: 90vh; width: 14.8%; float: left; border-left: 0px; border-top: 0px; border-bottom: 0px"
+		style="height: 92vh; width: 14.8%; float: left; border-left: 0px; border-top: 0px; border-bottom: 0px"
 		name="menuframe" title="menu"></iframe>
 	<iframe src="jsp/homepage.jsp"
-		style="height: 90vh; width: 85%; float: right; border-radius: 10px;border: 0;"
+		style="height: 92vh; width: 85%; float: right; border-radius: 10px;border: 0;"
 		name="mainframe"></iframe>
 	</div>
 	

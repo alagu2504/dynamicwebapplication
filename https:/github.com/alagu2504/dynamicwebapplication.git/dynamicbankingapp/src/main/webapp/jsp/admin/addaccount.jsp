@@ -74,6 +74,13 @@ table{
   text-align:left;
   padding-left:15%;
 }
+
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">

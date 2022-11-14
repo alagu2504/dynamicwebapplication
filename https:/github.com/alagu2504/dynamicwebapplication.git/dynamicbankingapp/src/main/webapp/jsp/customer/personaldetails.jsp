@@ -72,7 +72,12 @@ table{
   border-spacing: 30px;
   width:100%;
 }
-
+.error{
+	    margin-top:5px;
+	    text-align:center;
+		font-size:1em;
+		color:red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -81,7 +86,7 @@ table{
 <body>
 
 	<div class="container">
-	 <p>${error }</p>
+		<p class="error">${error }</p>
 		<h2>Peronal Info</h2>
 	<form action="bankingservlet" method="post" target="mainframe">
 		<table class="center">
