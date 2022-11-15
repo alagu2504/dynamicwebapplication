@@ -35,7 +35,8 @@ th {
 	width: 60%;
 	height: 45px;
 	font-size: 25px;
-  background: linear-gradient(to bottom, rgba(102, 153, 255, .7), rgba(102, 255, 255, .5));
+	background: linear-gradient(to bottom, rgba(102, 153, 255, .7),
+		rgba(102, 255, 255, .5));
 }
 
 tr:nth-child(even) {
@@ -47,7 +48,8 @@ tr:nth-child(odd) {
 }
 
 tr:hover {
-  background: linear-gradient(to bottom, rgba(102, 153, 255, .7), rgba(102, 255, 255, .5));
+	background: linear-gradient(to bottom, rgba(102, 153, 255, .7),
+		rgba(102, 255, 255, .5));
 }
 
 input {
@@ -60,13 +62,14 @@ input {
 	outline: none;
 }
 
-h2{           text-align:left;
-              margin-top:15px;
-              margin-left:10px;
-			  font-size:2em;
-			  background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
+h2 {
+	text-align: left;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-size: 2em;
+	background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 </style>
 <head>

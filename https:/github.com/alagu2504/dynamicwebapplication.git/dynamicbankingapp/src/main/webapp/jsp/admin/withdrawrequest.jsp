@@ -11,12 +11,12 @@ body {
 }
 
 table {
-    margin-top: 50px;
+	margin-top: 50px;
 	border-radius: 10px;
-	margin-left:20px;
+	margin-left: 20px;
 	border-collapse: collapse;
 	border: 3px solid #FFFFFF;
-	width:95%;
+	width: 95%;
 	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }
 
@@ -28,13 +28,13 @@ td {
 }
 
 th {
-    text-align: center;
+	text-align: center;
 	border: 3px solid #FFFFFF;
 	height: 45px;
 	font-size: 20px;
-    background-color: rgba(102, 153, 255, .8);
-    position: sticky;
-    top: 0;
+	background-color: rgba(102, 153, 255, .8);
+	position: sticky;
+	top: 0;
 }
 
 tr:nth-child(odd) {
@@ -46,51 +46,53 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background: linear-gradient(to bottom, rgba(102, 153, 255, .8), rgba(102, 255, 255, .5));
+	background: linear-gradient(to bottom, rgba(102, 153, 255, .8),
+		rgba(102, 255, 255, .5));
 }
 
-
-h2{           
-              text-align:left;
-              margin-top:15px;
-              margin-left:10px;
-			  font-size:2em;
-			  background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
+h2 {
+	text-align: left;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-size: 2em;
+	background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-.response{
-width:70%;
-font-size: .8em;
-border-radius:5px;
-height:30px;
-border-color: rgba(255, 114, 111, .8);
-box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
-background-color: rgba(102, 153, 255, .5);
+.response {
+	width: 70%;
+	font-size: .8em;
+	border-radius: 5px;
+	height: 30px;
+	border-color: rgba(255, 114, 111, .8);
+	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+	background-color: rgba(102, 153, 255, .5);
 }
 
-.save{
-width:80px;
-color:#FFFFFF;
-font-weight:bold;
-border-radius:10px;
-height:40px;
-border-color: rgba(255, 114, 111, .8);
-box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
-background-color: rgba(102, 153, 255, .5);
+.save {
+	width: 80px;
+	color: #FFFFFF;
+	font-weight: bold;
+	border-radius: 10px;
+	height: 40px;
+	border-color: rgba(255, 114, 111, .8);
+	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+	background-color: rgba(102, 153, 255, .5);
 }
-input{
-background: transparent;
-text-align:center;
-font-size:15px;
-border: 0;
+
+input {
+	background: transparent;
+	text-align: center;
+	font-size: 15px;
+	border: 0;
 }
-.error{
-	    margin-top:5px;
-	    text-align:center;
-		font-size:1em;
-		color:red;
+
+.error {
+	margin-top: 5px;
+	text-align: center;
+	font-size: 1em;
+	color: red;
 }
 </style>
 <head>
@@ -99,20 +101,20 @@ border: 0;
 </head>
 <body>
 	<h2>Withdraw Request Table</h2>
-			<p class="error">${error }</p>
-	
-		<table>
+	<p class="error">${error }</p>
 
-			<tr>
-				<th>Request Id</th>
-				<th>Account Number</th>
-				<th>Withdraw Amount</th>
-				<th>Status</th>
-				<th>Action</th>
-				<th>Submit</th>
-			</tr>
-			<c:forEach items="${withdrawRequest}" var="withdrawRequests">
-				<form action="bankingservlet" method="post" target="mainframe">
+	<table>
+
+		<tr>
+			<th>Request Id</th>
+			<th>Account Number</th>
+			<th>Withdraw Amount</th>
+			<th>Status</th>
+			<th>Action</th>
+			<th>Submit</th>
+		</tr>
+		<c:forEach items="${withdrawRequest}" var="withdrawRequests">
+			<form action="bankingservlet" method="post" target="mainframe">
 				<tr>
 					<td><input type="number" name="requestId"
 						value="${withdrawRequests.value.getRequestId() }" readonly
@@ -126,18 +128,19 @@ border: 0;
 					<td><input type="text" name="status"
 						value="${withdrawRequests.value.getRequestStatus() }" readonly
 						required></td>
-					<td><select class = "response" name="state">
+					<td><select class="response" name="state">
 							<option value="Accepted">Accepted</option>
 							<option value="Rejected">Rejected</option>
 					</select></td>
-					<td><input class= "save" type="submit" name="submit" value="SUBMIT"></td>
+					<td><input class="save" type="submit" name="submit"
+						value="SUBMIT"></td>
 
 				</tr>
 				<input type="hidden" name="action" value="Update Request">
-					</form>
-			</c:forEach>
+			</form>
+		</c:forEach>
 
-		</table>
+	</table>
 	<p id="error">${error}</p>
 </body>
 </html>

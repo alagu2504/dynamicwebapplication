@@ -7,15 +7,15 @@
 body {
 	background-color: rgba(245, 245, 245, 1);
 	height: 100vh;
-	width: 100%;	
+	width: 100%;
 }
 
 table {
 	border-radius: 10px;
-	margin-left:20px;
+	margin-left: 20px;
 	border-collapse: collapse;
 	border: 3px solid #FFFFFF;
-	width:95%;
+	width: 95%;
 	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }
 
@@ -27,13 +27,13 @@ td {
 }
 
 th {
-	 text-align: center;
+	text-align: center;
 	border: 3px solid #FFFFFF;
 	height: 45px;
 	font-size: 20px;
-    background-color: rgba(102, 153, 255, 1);
-    position: sticky;
-    top: 0;
+	background-color: rgba(102, 153, 255, 1);
+	position: sticky;
+	top: 0;
 }
 
 tr:nth-child(even) {
@@ -48,35 +48,34 @@ tr:hover {
 	background: linear-gradient(to bottom, #6699ff -3%, #66ffff 100%);
 }
 
-.save:hover{
+.save:hover {
 	background-color: green;
-
 }
 
-
-h2{           
-              text-align:left;
-              margin-top:15px;
-              margin-left:10px;
-			  font-size:2em;
-			  background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-}
-input{
-border: 0;
-width:100%;
-background:transparent;
+h2 {
+	text-align: left;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-size: 2em;
+	background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-.save{
-color:#FFFFFF;
-font-weight:bold;
-border-radius:5px;
-width:90%;
-border-color: rgba(255, 114, 111, .8);
-box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
-background-color: rgba(102, 153, 255, .5);
+input {
+	border: 0;
+	width: 100%;
+	background: transparent;
+}
+
+.save {
+	color: #FFFFFF;
+	font-weight: bold;
+	border-radius: 5px;
+	width: 90%;
+	border-color: rgba(255, 114, 111, .8);
+	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+	background-color: rgba(102, 153, 255, .5);
 }
 </style>
 <head>
@@ -91,18 +90,18 @@ background-color: rgba(102, 153, 255, .5);
 		<h2>All Customer Details</h2>
 		<table>
 			<tr>
-				<th style="width:5%">Customer Id</th>
-				<th style="width:8%">Name</th>
-				<th style="width:5%">Date Of Birth</th>
-				<th style="width:8%">Mobile</th>
-				<th style="width:20%">Address</th>
-				<th style="width:9%">Email Id</th>
-				<th style="width:9%">Password</th>
-				<th style="width:5%">Role</th>
-				<th style="width:9%">Aadhaar Number</th>
-				<th style="width:8%">Pan Number</th>
-				<th style="width:5%">Status</th>
-				<th style="width:5%">Update Change</th>
+				<th style="width: 5%">Customer Id</th>
+				<th style="width: 8%">Name</th>
+				<th style="width: 5%">Date Of Birth</th>
+				<th style="width: 8%">Mobile</th>
+				<th style="width: 20%">Address</th>
+				<th style="width: 9%">Email Id</th>
+				<th style="width: 9%">Password</th>
+				<th style="width: 5%">Role</th>
+				<th style="width: 9%">Aadhaar Number</th>
+				<th style="width: 8%">Pan Number</th>
+				<th style="width: 5%">Status</th>
+				<th style="width: 5%">Update Change</th>
 			</tr>
 			<c:forEach items="${customerDetail}" var="allCustomer">
 				<form action="bankingservlet" method="post">
@@ -129,7 +128,8 @@ background-color: rgba(102, 153, 255, .5);
 							value="${allCustomer.value.getPanNumber()}" /></td>
 						<td><input type="text" name="status"
 							value="${allCustomer.value.getStatus()}" /></td>
-						<td><input class="save" type="submit" name="submit" value="save" /></td>
+						<td><input class="save" type="submit" name="submit"
+							value="save" /></td>
 					</tr>
 					<input type="hidden" name="action" value="SaveInfo">
 				</form>

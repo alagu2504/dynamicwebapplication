@@ -13,8 +13,8 @@ body {
 
 table {
 	border-radius: 10px;
-	margin-left:20px;
-	margin-right: 200px ;
+	margin-left: 20px;
+	margin-right: 200px;
 	border-collapse: collapse;
 	border: 3px solid #FFFFFF;
 	width: 95%;
@@ -33,7 +33,8 @@ th {
 	border: 3px solid #FFFFFF;
 	height: 45px;
 	font-size: 20px;
-    background: linear-gradient(to bottom, rgba(102, 153, 255, .8), rgba(102, 255, 255, 0));
+	background: linear-gradient(to bottom, rgba(102, 153, 255, .8),
+		rgba(102, 255, 255, 0));
 }
 
 tr:nth-child(even) {
@@ -48,15 +49,14 @@ tr:hover {
 	background: linear-gradient(to bottom, #6699ff -3%, #66ffff 100%);
 }
 
-
-h2{           
-              text-align:left;
-              margin-top:15px;
-              margin-left:10px;
-			  font-size:2em;
-			  background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
+h2 {
+	text-align: left;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-size: 2em;
+	background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 </style>
 <head>
@@ -68,17 +68,18 @@ h2{
 	<table class="center">
 
 		<tr>
-			<th style="width:5%;">Transaction Id</th>
-			<th style="width:5%;">Customer Id</th>
-			<th style="width:25%;">Sender Account Number</th>
-			<th style="width:25%;">Receiver Account Number</th>
-			<th style="width:10%;">Transfer Amount</th>
-			<th style="width:10%;">Transaction Type</th>
-			<th style="width:30%;">Transaction Time</th>
-			<th style="width:20%;">Mode Of Transaction</th>
+			<th style="width: 5%;">Transaction Id</th>
+			<th style="width: 5%;">Customer Id</th>
+			<th style="width: 25%;">Sender Account Number</th>
+			<th style="width: 25%;">Receiver Account Number</th>
+			<th style="width: 10%;">Transfer Amount</th>
+			<th style="width: 10%;">Transaction Type</th>
+			<th style="width: 30%;">Transaction Time</th>
+			<th style="width: 20%;">Mode Of Transaction</th>
 		</tr>
 
 		<c:forEach items="${statement}" var="account">
+
 			<tr>
 				<td>${account.value.getTransactionId()}</td>
 				<td>${account.value.getCustomerId() }</td>

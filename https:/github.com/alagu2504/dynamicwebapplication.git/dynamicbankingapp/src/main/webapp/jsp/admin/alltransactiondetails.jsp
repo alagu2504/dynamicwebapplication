@@ -11,15 +11,14 @@ body {
 }
 
 table {
-    margin-top: 50px;
-    margin-bottom:30%;
+	margin-top: 50px;
+	margin-bottom: 30%;
 	border-radius: 10px;
-	margin-left:20px;
+	margin-left: 20px;
 	border-collapse: collapse;
 	border: 3px solid #FFFFFF;
-	width:95%;
+	width: 95%;
 	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
-	
 }
 
 td {
@@ -34,9 +33,9 @@ th {
 	border: 3px solid #FFFFFF;
 	height: 45px;
 	font-size: 20px;
-    background: rgba(102, 153, 255, 1);
-  position: sticky;
-  top: 0;
+	background: rgba(102, 153, 255, 1);
+	position: sticky;
+	top: 0;
 }
 
 tr:nth-child(even) {
@@ -51,37 +50,36 @@ tr:hover {
 	background: linear-gradient(to bottom, #6699ff -3%, #66ffff 100%);
 }
 
-
-h2{           
-              text-align:left;
-              margin-top:15px;
-              margin-left:10px;
-			  font-size:2em;
-			  background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
+h2 {
+	text-align: left;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-size: 2em;
+	background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-.accNo{
-width:25%;
-font-weight:bold;
-font-size: 1.2em;
-border-radius:5px;
-height:35px;
-border-color: rgba(255, 114, 111, .8);
-box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+.accNo {
+	width: 25%;
+	font-weight: bold;
+	font-size: 1.2em;
+	border-radius: 5px;
+	height: 35px;
+	border-color: rgba(255, 114, 111, .8);
+	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }
 
-.save{
-margin-left:50px;
-width:80px;
-color:#FFFFFF;
-font-weight:bold;
-border-radius:10px;
-height:40px;
-border-color: rgba(255, 114, 111, .8);
-box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
-background-color: rgba(102, 153, 255, .5);
+.save {
+	margin-left: 50px;
+	width: 80px;
+	color: #FFFFFF;
+	font-weight: bold;
+	border-radius: 10px;
+	height: 40px;
+	border-color: rgba(255, 114, 111, .8);
+	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+	background-color: rgba(102, 153, 255, .5);
 }
 </style>
 <head>
@@ -89,16 +87,18 @@ background-color: rgba(102, 153, 255, .5);
 <title></title>
 </head>
 <body>
-	<h2 >All Transaction Details</h2>
+	<h2>All Transaction Details</h2>
 	<form action="bankingservlet" method="post" target="mainframe">
-		<label style="font-size:1.5em">Account Number :</label> <input class= "accNo" type="number"
-			name="accountNumber" placeholder="Enter Account Number"/> 
-					<input class= "accNo" style="display:inline;" type="number" name="days" placeholder="Enter number Of Days"/> 
-			<input class= "save" type="submit" name="submit" /> <input
-			type="hidden" name="action" value="STATEMENTS" />
+		<label style="font-size: 1.5em">Account Number :</label> <input
+			class="accNo" type="number" name="accountNumber"
+			placeholder="Enter Account Number" /> <input class="accNo"
+			style="display: inline;" type="number" name="days"
+			placeholder="Enter number Of Days" /> <input class="save"
+			type="submit" name="submit" /> <input type="hidden" name="action"
+			value="STATEMENTS" />
 	</form>
-	<table >
-		<tr >
+	<table>
+		<tr>
 			<th>Transaction Id</th>
 			<th>Customer Id</th>
 			<th>Sender Account Number</th>

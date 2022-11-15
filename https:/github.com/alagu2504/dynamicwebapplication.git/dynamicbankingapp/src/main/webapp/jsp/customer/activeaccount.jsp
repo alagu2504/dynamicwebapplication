@@ -51,29 +51,29 @@ h2 {
 	border-right: 0px;
 	border-radius: 8px;
 	height: 30px;
-	width:80%;
+	width: 80%;
 	text-align: center;
 	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }
 
-.center{
-	margin-left:auto;
-	margin-right:auto;
-	text-align:center;
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 
-table{
-  border-collapse:separate;
-  border-spacing: 40px;
-  padding-left:20px;
-}
-.error{
-	    margin-top:5px;
-	    text-align:center;
-		font-size:1em;
-		color:red;
+table {
+	border-collapse: separate;
+	border-spacing: 40px;
+	padding-left: 20px;
 }
 
+.error {
+	margin-top: 5px;
+	text-align: center;
+	font-size: 1em;
+	color: red;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -83,13 +83,14 @@ table{
 
 	<div class="container">
 		<h2>Request To Active Account</h2>
-				<p class="error">${error }</p>
+		<p class="error">${error }</p>
 		<form action="bankingservlet" method="post">
 
 			<table class="center">
 				<tr>
-					<td style="text-align:left;" > <label style="padding-bottom:10px;font-size: 20px;"
-						for="accno">Account Number</label></td>
+					<td style="text-align: left;"><label
+						style="padding-bottom: 10px; font-size: 20px;" for="accno">Account
+							Number</label></td>
 					<td><select class="textFeild" name="accountnumber">
 							<c:forEach items="${inActiveAccounts}" var="accountNumber">
 								<option value="${accountNumber.key}">${accountNumber.key}</option>
@@ -98,10 +99,10 @@ table{
 				</tr>
 
 				<tr>
-					<td style="text-align:left;"><label
+					<td style="text-align: left;"><label
 						style="margin-right: 80px; font-size: 20px; padding-bottom: 30px;"
 						for="reason">Description </label></td>
-					<td style="padding-left:7%;padding-right:10%;"><textarea
+					<td style="padding-left: 7%; padding-right: 10%;"><textarea
 							style="height: 90px; width: 110%; border-radius: 10px;"
 							id="describtion" name="describtion" rows="4" cols="50" required></textarea>
 					</td>

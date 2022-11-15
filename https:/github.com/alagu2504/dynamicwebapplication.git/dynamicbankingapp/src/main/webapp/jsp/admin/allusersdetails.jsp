@@ -12,11 +12,11 @@ body {
 
 table {
 	border-radius: 10px;
-	margin-left:200px;
-	margin-right: 200px ;
+	margin-left: 200px;
+	margin-right: 200px;
 	border-collapse: collapse;
 	border: 3px solid #FFFFFF;
-	width:80%;
+	width: 80%;
 	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }
 
@@ -28,13 +28,13 @@ td {
 }
 
 th {
-	 text-align: center;
+	text-align: center;
 	border: 3px solid #FFFFFF;
 	height: 45px;
 	font-size: 20px;
-    background-color: rgba(102, 153, 255, .8);
-    position: sticky;
-    top: 0;
+	background-color: rgba(102, 153, 255, .8);
+	position: sticky;
+	top: 0;
 }
 
 tr:nth-child(even) {
@@ -49,15 +49,14 @@ tr:hover {
 	background: linear-gradient(to bottom, #6699ff -3%, #66ffff 100%);
 }
 
-
-h2{           
-              text-align:left;
-              margin-top:15px;
-              margin-left:10px;
-			  font-size:2em;
-			  background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
+h2 {
+	text-align: left;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-size: 2em;
+	background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 </style>
 <head>
@@ -65,7 +64,7 @@ h2{
 <title>All User Details</title>
 </head>
 <body>
-	<h2 >All User's Details</h2>
+	<h2>All User's Details</h2>
 	<table>
 		<tr>
 			<th>User ID</th>

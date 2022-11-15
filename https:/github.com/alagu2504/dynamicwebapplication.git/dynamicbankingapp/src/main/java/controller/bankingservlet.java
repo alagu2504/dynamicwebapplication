@@ -117,7 +117,12 @@ public class bankingservlet extends HttpServlet {
 		}//end of login
 
 		case "Home":{
-			HttpSession session=request.getSession(false);  
+			HttpSession session=request.getSession(false); 
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin adminObject=new Admin();
 			Map<Integer,Map<Long,Account>> accountDetails=adminObject.getAllAccountDetailsOfCustomer();
 			Map<Long,Account> accounts=accountDetails.get(session.getAttribute("userId"));
@@ -128,7 +133,12 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "Deposit":{
-			HttpSession session=request.getSession(false);  
+			HttpSession session=request.getSession(false); 
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Long,Account> activeAccounts=admin.getActiveAccounts((int)session.getAttribute("userId"));
 			request.setAttribute("activeAccounts", activeAccounts);
@@ -140,7 +150,12 @@ public class bankingservlet extends HttpServlet {
 
 		case "DEPOSIT AMOUNT":{
 			String error="Deposit Completed Successfully";
-			HttpSession session=request.getSession(false);  
+			HttpSession session=request.getSession(false); 
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			try {
 				userObject.depositMethod(Long.parseLong(request.getParameter("depositAmount")), Long.parseLong(request.getParameter("accountnumber")));
@@ -165,6 +180,11 @@ public class bankingservlet extends HttpServlet {
 
 		case "Withdraw":{
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Long,Account> activeAccounts=admin.getActiveAccounts((int)session.getAttribute("userId"));
 			request.setAttribute("activeAccounts", activeAccounts);
@@ -176,6 +196,11 @@ public class bankingservlet extends HttpServlet {
 		case "WITHDRAW":{
 			String error="Withdraw Request Submitted";
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			try {
 				userObject.withdrawMethod(Long.parseLong(request.getParameter("withdrawAmount")), Long.parseLong(request.getParameter("accountnumber")));
@@ -200,6 +225,11 @@ public class bankingservlet extends HttpServlet {
 
 		case "Transfer":{
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Long,Account> activeAccounts=admin.getActiveAccounts((int)session.getAttribute("userId"));
 			request.setAttribute("activeAccounts", activeAccounts);
@@ -210,7 +240,12 @@ public class bankingservlet extends HttpServlet {
 
 
 		case "TRANSFER":{
-			HttpSession session=request.getSession(false);  
+			HttpSession session=request.getSession(false); 
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			String error="Transfer Completed Successfully";
 			try {
@@ -237,6 +272,11 @@ public class bankingservlet extends HttpServlet {
 
 		case "Account Details":{
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin adminObject=new Admin();
 			Map<Integer,Map<Long,Account>> accountDetails=adminObject.getAllAccountDetailsOfCustomer();
 			Map<Long,Account> accounts=accountDetails.get(session.getAttribute("userId"));
@@ -246,7 +286,12 @@ public class bankingservlet extends HttpServlet {
 			break;
 		}
 		case "ACCOUNT INFO":{
-			HttpSession session=request.getSession(false);  
+			HttpSession session=request.getSession(false); 
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin adminObject=new Admin();
 			Map<Integer,Map<Long,Account>> accountDetails=adminObject.getAllAccountDetailsOfCustomer();
 			Map<Long,Account> accounts=accountDetails.get(session.getAttribute("userId"));
@@ -259,7 +304,12 @@ public class bankingservlet extends HttpServlet {
 
 
 		case "Transaction Statements":{
-			HttpSession session=request.getSession(false);  
+			HttpSession session=request.getSession(false); 
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Long,Account> activeAccount=admin.getActiveAccounts((int)session.getAttribute("userId"));
 			request.setAttribute("activeAccount", activeAccount);
@@ -271,6 +321,11 @@ public class bankingservlet extends HttpServlet {
 		case "Active Account":{
 			String error="";
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Long,Account> inActiveAccount=new HashMap<>();
 			try {
@@ -293,6 +348,11 @@ public class bankingservlet extends HttpServlet {
 		case "Active Account Request":{
 			String error="Request Submitted Successfully";
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Long,Account> inActiveAccount=new HashMap<>();
 			try {
@@ -318,6 +378,12 @@ public class bankingservlet extends HttpServlet {
 
 
 		case "View Users Details":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Integer,User> usersDetails=new TreeMap<>(admin.getAllUsersDetails());
 			request.setAttribute("usersDetails", usersDetails);
@@ -327,6 +393,12 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "View Customer Details":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Integer,Customer> customerDetails=admin.getAllCustomerDetails();
 			Map<Integer,Customer> treeMap=new TreeMap<>(customerDetails);
@@ -337,9 +409,16 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "View Account Details":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Integer,Map<Long,Account>> allAccountDetails=admin.getAllAccountDetailsOfCustomer();
-			request.setAttribute("allAccountDetails", allAccountDetails);
+			Map<Integer,Map<Long,Account>> allAccountDetail=new TreeMap<>(allAccountDetails);
+			request.setAttribute("allAccountDetails", allAccountDetail);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/allaccountsdetails.jsp");
 			dispatcher.forward(request, response);
 			break;
@@ -347,6 +426,11 @@ public class bankingservlet extends HttpServlet {
 
 		case "STATEMENTS":{
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Operations user=new Operations(); 
 			String role=session.getAttribute("role").toString().trim();
 			Map<Integer,Statements> statements=new TreeMap<>();
@@ -394,6 +478,12 @@ public class bankingservlet extends HttpServlet {
 
 
 		case "View Transaction Details":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Admin admin=new Admin();
 			Map<Integer,Statements> secondMap=new HashMap<>();
 			Map<Long,Map<Integer,Statements>> allStatements=admin.getAllStatements();
@@ -429,6 +519,12 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "View Customer Status Request":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			String error="";
 			Admin admin=new Admin();
 			try {
@@ -471,6 +567,12 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "View Account Status Request":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			String error="";
 			Admin admin=new Admin();
 			try {
@@ -490,6 +592,7 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "Update Account Status Request":{
+			
 			Admin admin=new Admin();
 			String error="";
 			try {
@@ -513,6 +616,12 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "View Withdraw Request":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			String message="";
 			Admin admin=new Admin();
 			Map<Integer,TransactionRequest> waitingRequest=new TreeMap<>();
@@ -562,6 +671,12 @@ public class bankingservlet extends HttpServlet {
 
 
 		case "ADD NEW USER":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			String message="Successfully Inserted";
 			Admin admin=new Admin();
 			User user=new User();
@@ -590,11 +705,23 @@ public class bankingservlet extends HttpServlet {
 
 
 		case "Add New Users":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/adduser.jsp");
 			dispatcher.forward(request, response);
 			break;
 		}
 		case "Add New Account":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			//			Admin admin=new Admin();
 			//			Map<Integer,Customer> customerDetails=new TreeMap<>(admin.getActiveCustomer());
 			//			request.setAttribute("activeCustomer", customerDetails);
@@ -604,6 +731,12 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "CREATE ACCOUNT":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			String message="Account Create Successfully";
 			Admin admin=new Admin();
 			Account account=new Account();
@@ -631,6 +764,11 @@ public class bankingservlet extends HttpServlet {
 
 		case "Personal Details":{
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			Customer customer=userObject.getCustomerDetails((int)session.getAttribute("userId"));
 			request.setAttribute("customer", customer);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/customer/personaldetails.jsp");
@@ -640,6 +778,11 @@ public class bankingservlet extends HttpServlet {
 
 		case "User Details":{
 			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			User user=userObject.getUserDetails((int)session.getAttribute("userId"));
 			request.setAttribute("user", user);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/userinfo.jsp");
@@ -649,7 +792,12 @@ public class bankingservlet extends HttpServlet {
 		}
 		case "Update UserInfo":{
 			String error="Updated Successfully";
-			HttpSession session=request.getSession(false);  
+			HttpSession session=request.getSession(false); 
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			User user=new User();
 			user.setUserId(Integer.parseInt(request.getParameter("userId").trim()));	
 			user.setUserName(request.getParameter("userName").trim());
@@ -682,6 +830,11 @@ public class bankingservlet extends HttpServlet {
 
 			String error="";
 			HttpSession session=request.getSession(false); 
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 
 			Customer customer=new Customer();
 			customer.setCustomerId(Integer.parseInt(request.getParameter("customerId")));
@@ -740,6 +893,12 @@ public class bankingservlet extends HttpServlet {
 
 
 		case "Change Password":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/changepassword.jsp");
 			dispatcher.forward(request, response);
 			break;
@@ -747,12 +906,14 @@ public class bankingservlet extends HttpServlet {
 
 		case "CHANGE PASSWORD":{
 			String error="Password Changed Successfully";
-			boolean change=false;
 			HttpSession session=request.getSession(false);  
-			User user=userObject.getUserDetails((int)session.getAttribute("userId"));
-			String role=user.getRole().trim();
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			try {
-				change=userObject.changePassword((int)session.getAttribute("userId"), request.getParameter("newpassword"),request.getParameter("confirm_password"));
+				userObject.changePassword((int)session.getAttribute("userId"), request.getParameter("newpassword"),request.getParameter("confirm_password"));
 			} catch (CustomException e) {
 				error=e.getMessage();
 				request.setAttribute("error", error);
@@ -822,12 +983,24 @@ public class bankingservlet extends HttpServlet {
 		}
 
 		case "ADD CUSTOMER":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/addcustomer.jsp");
 			dispatcher.forward(request, response);
 			break;
 		}
 
 		case "ADD ADMIN":{
+			HttpSession session=request.getSession(false);  
+			if(session==null) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/loginpage.jsp");
+				dispatcher.forward(request, response);
+				break;	
+			}
 			RequestDispatcher dispatcher=request.getRequestDispatcher("jsp/admin/addAdmin.jsp");
 			dispatcher.forward(request, response);
 			break;	

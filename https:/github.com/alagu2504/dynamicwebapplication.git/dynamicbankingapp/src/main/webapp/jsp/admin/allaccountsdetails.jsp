@@ -12,10 +12,10 @@ body {
 
 table {
 	border-radius: 10px;
-	margin-left:20px;
+	margin-left: 20px;
 	border-collapse: collapse;
 	border: 3px solid #FFFFFF;
-	width:95%;
+	width: 95%;
 	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }
 
@@ -27,13 +27,13 @@ td {
 }
 
 th {
- text-align: center;
+	text-align: center;
 	border: 3px solid #FFFFFF;
 	height: 45px;
 	font-size: 20px;
-    background-color: rgba(102, 153, 255, .8);
-    position: sticky;
-    top: 0;
+	background-color: rgba(102, 153, 255, .8);
+	position: sticky;
+	top: 0;
 }
 
 tr:nth-child(even) {
@@ -48,31 +48,31 @@ tr:hover {
 	background: linear-gradient(to bottom, #6699ff -3%, #66ffff 100%);
 }
 
-
-h2{           
-              text-align:left;
-              margin-top:15px;
-              margin-left:10px;
-			  font-size:2em;
-			  background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-}
-input{
-border: 0;
-width:100%;
-background:transparent;
+h2 {
+	text-align: left;
+	margin-top: 15px;
+	margin-left: 10px;
+	font-size: 2em;
+	background: -webkit-linear-gradient(#6699ff -3%, #66ffff 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-.save{
-width:5%;
-color:#FFFFFF;
-font-weight:bold;
-border-radius:5px;
-width:90%;
-border-color: rgba(255, 114, 111, .8);
-box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
-background-color: rgba(102, 153, 255, .5);
+input {
+	border: 0;
+	width: 100%;
+	background: transparent;
+}
+
+.save {
+	width: 5%;
+	color: #FFFFFF;
+	font-weight: bold;
+	border-radius: 5px;
+	width: 90%;
+	border-color: rgba(255, 114, 111, .8);
+	box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+	background-color: rgba(102, 153, 255, .5);
 }
 </style>
 <head>
@@ -81,8 +81,8 @@ background-color: rgba(102, 153, 255, .5);
 <title>All Account Details</title>
 </head>
 <body>
-	<h2 >All Accounts Details</h2>
-	<table >
+	<h2>All Accounts Details</h2>
+	<table>
 		<tr>
 			<th>CUSTOMER ID</th>
 			<th>ACCOUNT NUMBER</th>
