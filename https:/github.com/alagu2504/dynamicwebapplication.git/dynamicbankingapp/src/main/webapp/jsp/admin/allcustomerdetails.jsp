@@ -96,7 +96,6 @@ input {
 				<th style="width: 8%">Mobile</th>
 				<th style="width: 20%">Address</th>
 				<th style="width: 9%">Email Id</th>
-				<th style="width: 9%">Password</th>
 				<th style="width: 5%">Role</th>
 				<th style="width: 9%">Aadhaar Number</th>
 				<th style="width: 8%">Pan Number</th>
@@ -118,8 +117,7 @@ input {
 							value="${allCustomer.value.getAddress()}" /></td>
 						<td><input type="text" name="emailId"
 							value="${allCustomer.value.getEmailId()}" /></td>
-						<td><input type="text" name="password"
-							value="${allCustomer.value.getPassword()}" /></td>
+						
 						<td><input type="text" name="role"
 							value="${allCustomer.value.getRole()}" /></td>
 						<td><input type="number" name="aadhaarNumber"
@@ -131,6 +129,8 @@ input {
 						<td><input class="save" type="submit" name="submit"
 							value="save" /></td>
 					</tr>
+					<input type="hidden" name="password"
+							value="${allCustomer.value.getPassword()}" />
 					<input type="hidden" name="action" value="SaveInfo">
 				</form>
 			</c:forEach>
